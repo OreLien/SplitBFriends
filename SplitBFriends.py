@@ -13,43 +13,6 @@ parser = argparse.ArgumentParser(
 parser.add_argument('-v', '--visualization', help='Generate visualization of balances', action='store_true')
 args = parser.parse_args()
 
-
-# Return true of false if balance is over or not
-def is_balance_over(list_of_friends):
-    for i, friend in enumerate(list_of_friends):
-        # we use 0.1 in case of fraction
-        if abs(friend.get_balance_amount()) > 0.1:
-            return False
-    return True
-
-
-# Pick a friend having a positive balance (= should receive money)
-def pick_positive_balance_friend(list_of_friends):
-    for i, friend in enumerate(list_of_friends):
-        if friend.get_balance_amount() > 0:
-            return friend
-    return None
-
-
-# Pick a friend having a negative balance (= should give money)
-def pick_negative_balance_friend(list_of_friends):
-    for i, friend in enumerate(list_of_friends):
-        if friend.get_balance_amount() < 0:
-            return friend
-    return None
-
-
-# Create a balance between two friends
-def create_balance(list_of_balances, positive_balance_friend, negative_balance_friend):
-    positive_balance_amount = positive_balance_friend.get_balance_amount()
-    negative_balance_amount = negative_balance_friend.get_balance_amount()
-    amount = min(positive_balance_amount, abs(negative_balance_amount))
-    positive_balance_friend.decrease_balance_amount(amount)
-    negative_balance_friend.increase_balance_amount(amount)
-    balance = Balance.Balance(negative_balance_friend, positive_balance_friend, amount)
-    list_of_balances.append(balance)
-
-
 # Event configuration
 print("\n############")
 print("## Event : ")
@@ -97,11 +60,11 @@ for i, friend in enumerate(list_of_friends):
 
 list_of_balances = []
 
-while not is_balance_over(list_of_friends):
-    positive_balance_friend = pick_positive_balance_friend(list_of_friends)
-    negative_balance_friend = pick_negative_balance_friend(list_of_friends)
+while not Balance.is_balance_over(list_of_friends):
+    positive_balance_friend = Balance.pick_positive_balance_friend(list_of_friends)
+    negative_balance_friend = Balance.pick_negative_balance_friend(list_of_friends)
     if positive_balance_friend is not None and negative_balance_friend is not None:
-        create_balance(list_of_balances, positive_balance_friend, negative_balance_friend)
+        Balance.create_balance(list_of_balances, positive_balance_friend, negative_balance_friend)
 
 print("\n############")
 print("## Balance summary : ")
