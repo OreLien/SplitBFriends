@@ -21,7 +21,7 @@ print("############\n")
 try:
     nb_of_friends = float(input("\t● Number of friends ? > "))
 except Exception as e:
-    print("\nError : number of friends should be integer")
+    print("\nError : number of friends should be a number")
     sys.exit()
 
 event = Event.Event(nb_of_friends)
