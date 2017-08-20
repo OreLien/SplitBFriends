@@ -13,7 +13,7 @@ You may use option `-v` (or `--visualization`) for data visualization :
 Here is the help menu :
 ```
 >python SplitBFriends.py -h
-usage: SplitBFriends [-h] [-v]
+usage: SplitBFriends.py [-h] [-v]
 
 Split expenses between friends, let's Split and Be Friends !
 

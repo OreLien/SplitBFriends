@@ -8,7 +8,6 @@ import Utils.Visualization as Visualization
 
 # Argument parser configuration
 parser = argparse.ArgumentParser(
-    prog="SplitBFriends",
     description="Split expenses between friends, let's Split and Be Friends !"
 )
 parser.add_argument('-v', '--visualization', help='Generate visualization of balances', action='store_true')
