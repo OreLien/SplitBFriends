@@ -86,4 +86,4 @@ for i, balance in enumerate(list_of_balances):
         balance.get_amount()) + "€ " + translator.trans("to") + " [" + balance.get_to_friend().get_name() + "]")
 
 if args.visualization is True:
-    Visualization.show_visualization(list_of_friends, event)
+    Visualization.show_visualization(list_of_friends, event, translator)
