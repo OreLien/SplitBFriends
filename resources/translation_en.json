@@ -1,0 +1,16 @@
+{
+  "event": "Event",
+  "friend": "Friend",
+  "number_friend": "Number of friends",
+  "name": "Name",
+  "paid_amount": "Paid amount",
+  "balance_summary": "Balance summary",
+  "total_amount": "Total amount",
+  "amount_by_friend": "Amount by friend",
+  "should_pay": "should pay",
+  "to": "to",
+  "error": "Error",
+  "error_number_friend": "number of friends should be a number",
+  "error_invalid_name": "invalid name",
+  "error_paid_amount": "paid amount should be a number"
+}

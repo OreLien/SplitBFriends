@@ -5,23 +5,31 @@ import Utils.Friend as Friend
 import Utils.Event as Event
 import Utils.Balance as Balance
 import Utils.Visualization as Visualization
+import Utils.Translator as Translator
 
 # Argument parser configuration
 parser = argparse.ArgumentParser(
     description="Split expenses between friends, let's Split and Be Friends !"
 )
 parser.add_argument('-v', '--visualization', help='Generate visualization of balances', action='store_true')
+parser.add_argument('-f', '--french', help='Use SlipBFriends in french', action='store_true')
 args = parser.parse_args()
+
+# Initialize translator
+translator = Translator.Translator()
+
+if args.french is True:
+    translator.set_lang("fr")
 
 # Event configuration
 print("\n############")
-print("## Event : ")
+print("## " + translator.trans("event") + " : ")
 print("############\n")
 
 try:
-    nb_of_friends = float(input("\t● Number of friends ? > "))
+    nb_of_friends = float(input("\t● " + translator.trans("number_friend") + " ? > "))
 except Exception as e:
-    print("\nError : number of friends should be a number")
+    print("\n" + translator.trans("error") + " : " + translator.trans("error_number_friends"))
     sys.exit()
 
 event = Event.Event(nb_of_friends)
@@ -30,17 +38,17 @@ list_of_friends = []
 # Retrieve friend details
 for i in range(event.get_nb_of_friends()):
     print("\n############")
-    print("## Friend n° : " + str(i + 1))
+    print("## " + translator.trans("friend") + " n° : " + str(i + 1))
     print("############\n")
     try:
-        name = str(input("\t● Name ? > "))
+        name = str(input("\t● " + translator.trans("name") + " ? > "))
     except Exception as e:
-        print("\nError : invalid name")
+        print("\n" + translator.trans("error") + " : " + translator.trans("error_invalid_name"))
         sys.exit()
     try:
-        paid_amount = float(input("\t● Paid amount ? > "))
+        paid_amount = float(input("\t● " + translator.trans("paid_amount") + " ? > "))
     except Exception as e:
-        print("\nError : paid amount should be a number")
+        print("\n" + translator.trans("error") + " : " + translator.trans("error_paid_amount") + "")
         sys.exit()
     friend = Friend.Friend(i, name, float(paid_amount))
     list_of_friends.append(friend)
@@ -67,15 +75,15 @@ while not Balance.is_balance_over(list_of_friends):
         Balance.create_balance(list_of_balances, positive_balance_friend, negative_balance_friend)
 
 print("\n############")
-print("## Balance summary : ")
+print("## " + translator.trans("balance_summary") + " : ")
 print("############\n")
 
-print("\t● Total amount > " + "{0:.2f}".format(event.get_total_amount()) + "€")
-print("\t● Amount by friend > " + "{0:.2f}".format(event.get_average_amount()) + "€")
+print("\t● " + translator.trans("total_amount") + " > " + "{0:.2f}".format(event.get_total_amount()) + "€")
+print("\t● " + translator.trans("amount_by_friend") + " > " + "{0:.2f}".format(event.get_average_amount()) + "€")
 
 for i, balance in enumerate(list_of_balances):
-    print("\t● Friend [" + balance.get_from_friend().get_name() + "] should pay " + "{0:.2f}".format(
-        balance.get_amount()) + "€ to [" + balance.get_to_friend().get_name() + "]")
+    print("\t● " + translator.trans("friend") + " [" + balance.get_from_friend().get_name() + "] " + translator.trans("should_pay") + " " + "{0:.2f}".format(
+        balance.get_amount()) + "€ " + translator.trans("to") + " [" + balance.get_to_friend().get_name() + "]")
 
 if args.visualization is True:
     Visualization.show_visualization(list_of_friends, event)

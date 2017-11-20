@@ -1,0 +1,16 @@
+{
+  "event": "Événement",
+  "friend": "Ami",
+  "number_friend": "Nombre d'amis",
+  "name": "Nom",
+  "paid_amount": "Montant payé",
+  "balance_summary": "Balance",
+  "total_amount": "Montant total",
+  "amount_by_friend": "Montant par ami",
+  "should_pay": "doit payer",
+  "to": "à",
+  "error": "Erreur",
+  "error_number_friend": "Le nombre d'amis doit être un nombre",
+  "error_invalid_name": "Nom invalide",
+  "error_paid_amount": "Le montant payé doit être un nombre"
+}

@@ -20,6 +20,7 @@ Split expenses between friends, let's Split and Be Friends !
 optional arguments:
   -h, --help           show this help message and exit
   -v, --visualization  Generate visualization of balances
+  -f, --french         Use SlipBFriends in french
 ```
 
 ## Program output

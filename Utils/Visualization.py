@@ -1,6 +1,5 @@
 import matplotlib.pyplot as plt
 
-
 # Generate visualization
 def show_visualization(list_of_friends, event):
     fig = plt.figure("Balance summary")
