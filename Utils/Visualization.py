@@ -1,8 +1,8 @@
 import matplotlib.pyplot as plt
 
 # Generate visualization
-def show_visualization(list_of_friends, event):
-    fig = plt.figure("Balance summary")
+def show_visualization(list_of_friends, event, translator):
+    fig = plt.figure(translator.trans("balance_summary"))
     ax = fig.add_subplot(1, 1, 1)
     bars = [i + 1 for i in range(len(list_of_friends))]
     paid_amounts = [val.get_paid_amount() for i, val in enumerate(list_of_friends)]
@@ -10,7 +10,7 @@ def show_visualization(list_of_friends, event):
     ax.bar(left=bars,
            height=paid_amounts,
            width=bar_width,
-           label="Paid Amount",
+           label=translator.trans("paid_amount"),
            color="#258BFF")
     subbars_debit = []
     balance_amounts_debit = []
@@ -34,19 +34,19 @@ def show_visualization(list_of_friends, event):
            height=balance_amounts_debit,
            width=bar_width,
            bottom=bottom_amounts_debit,
-           label="Debit amount",
+           label=translator.trans("debit_amount"),
            color="r")
     ax.bar(left=subbars_credit,
            height=balance_amounts_credit,
            width=bar_width,
            bottom=bottom_amounts_credit,
-           label="Credit amount",
+           label=translator.trans("credit_amount"),
            color="g")
 
     names = [val.get_name() for i, val in enumerate(list_of_friends)]
     plt.xticks(bars, names)
-    ax.set_xlabel("Friend")
-    ax.set_ylabel("Amount (in €)")
+    ax.set_xlabel(translator.trans("friend"))
+    ax.set_ylabel(translator.trans("amount") + " (" + translator.trans("in") + " €)")
     plt.legend(loc="upper right")
     plt.xlim([min(bars) - bar_width, max(bars) + bar_width])
     plt.show()
