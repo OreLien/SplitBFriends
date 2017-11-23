@@ -1,4 +1,7 @@
 # Python program to make balance between friends expenses
+# encoding: UTF-8
+# Copyright 2017 Aurélien Pinson
+
 import sys
 import argparse
 import Utils.Friend as Friend
@@ -9,7 +12,8 @@ import Utils.Translator as Translator
 
 # Argument parser configuration
 parser = argparse.ArgumentParser(
-    description="Split expenses between friends, let's Split and Be Friends !"
+    description="Split expenses between friends, let's Split and Be Friends !",
+    epilog="Copyright 2017 Aurélien Pinson"
 )
 parser.add_argument('-v', '--visualization', help='Generate visualization of balances', action='store_true')
 parser.add_argument('-f', '--french', help='Use SlipBFriends in french', action='store_true')

@@ -21,6 +21,8 @@ optional arguments:
   -h, --help           show this help message and exit
   -v, --visualization  Generate visualization of balances
   -f, --french         Use SlipBFriends in french
+  
+Copyright 2017 Aurélien Pinson
 ```
 
 ## Program output
