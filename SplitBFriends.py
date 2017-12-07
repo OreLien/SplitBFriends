@@ -42,15 +42,23 @@ list_of_friends = []
 # Retrieve friend details
 for i in range(event.get_nb_of_friends()):
     print("\n############")
-    print("## " + translator.trans("friend") + " n° : " + str(i + 1))
+    print("## " + translator.trans("friend") + " n°" + str(i + 1))
     print("############\n")
     try:
         name = str(input("\t● " + translator.trans("name") + " ? > "))
     except Exception as e:
         print("\n" + translator.trans("error") + " : " + translator.trans("error_invalid_name"))
         sys.exit()
+    # in case of empty input name, set default value
+    if not name:
+        name = translator.trans("friend") + " n°" + str(i + 1)
+
+    paid_amount = input("\t● " + translator.trans("paid_amount") + " ? > ")
+    # In case of empty input amount, set default value
+    if not paid_amount:
+        paid_amount = 0
     try:
-        paid_amount = float(input("\t● " + translator.trans("paid_amount") + " ? > "))
+        paid_amount = float(paid_amount)
     except Exception as e:
         print("\n" + translator.trans("error") + " : " + translator.trans("error_paid_amount") + "")
         sys.exit()
