@@ -24,24 +24,27 @@ def show_visualization(list_of_friends, event, translator):
             subbars_credit.append(i + 1)
             balance_amounts_credit.append(balance_amount_credit)
             bottom_amounts_credit.append(event.get_average_amount())
-        else:
+        elif list_of_friends[i].get_paid_amount() < event.get_average_amount():
             balance_amount_debit = event.get_average_amount() - list_of_friends[i].get_paid_amount()
             subbars_debit.append(i + 1)
             balance_amounts_debit.append(balance_amount_debit)
             bottom_amounts_debit.append(list_of_friends[i].get_paid_amount())
 
-    ax.bar(left=subbars_debit,
-           height=balance_amounts_debit,
-           width=bar_width,
-           bottom=bottom_amounts_debit,
-           label=translator.trans("debit_amount"),
-           color="r")
-    ax.bar(left=subbars_credit,
-           height=balance_amounts_credit,
-           width=bar_width,
-           bottom=bottom_amounts_credit,
-           label=translator.trans("credit_amount"),
-           color="g")
+    if subbars_debit and balance_amounts_debit and bottom_amounts_debit:
+        ax.bar(left=subbars_debit,
+               height=balance_amounts_debit,
+               width=bar_width,
+               bottom=bottom_amounts_debit,
+               label=translator.trans("debit_amount"),
+               color="r")
+
+    if subbars_credit and balance_amounts_credit and bottom_amounts_credit:
+        ax.bar(left=subbars_credit,
+               height=balance_amounts_credit,
+               width=bar_width,
+               bottom=bottom_amounts_credit,
+               label=translator.trans("credit_amount"),
+               color="g")
 
     names = [val.get_name() for i, val in enumerate(list_of_friends)]
     plt.xticks(bars, names)
